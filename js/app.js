@@ -10,16 +10,16 @@ console.log("Sanity Check!")
 // Make background
 
 // Make Start Menu Music
-// const bkgMusic = {
-//     startMusic: new Audio('music/skyrimmenu.mp3'),
-// }
+const bkgMusic = {
+    startMusic: new Audio('music/skyrimmenu.mp3'),
+}
 // const lvlUp = {
 //     beginBtn: new Audio('music/lvlUpSound.mp3')
 // }
 // // Make Start Button
-// document.querySelector(".intro button").addEventListener("mouseenter", () => {
-//     bkgMusic.startMusic.play()
-// })
+document.querySelector(".intro button").addEventListener("mouseenter", () => {
+    bkgMusic.startMusic.play()
+ })
 // // Music starts when button is clicked 
 // document.querySelector(".intro button").addEventListener("click", () => {
 //     bkgMusic.startMusic.pause()
@@ -40,11 +40,16 @@ const game = () => {
       const playBtn = document.querySelector('.intro button');
       const introScreen = document.querySelector('.intro');
       const match = document.querySelector('.match');
-  
+      const lvlUp = {
+         beginBtn: new Audio('music/lvlUpSound.mp3')
+      }
        playBtn.addEventListener('click', () => {
-         introScreen.classList.add('fadeOut');
-        //  match.classList.add("fadeIn");
+            introScreen.classList.add('fadeOut');
+            match.classList.add("fadeIn");
+            lvlUp.beginBtn.play();
+            bkgMusic.beginBtn.pause();
       }); 
+    };
       //re add ")" 43
 
   // Play match
