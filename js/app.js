@@ -67,6 +67,12 @@ const game = () => {
         const computerHealth = document.querySelector('.computer-health p');
         playerHealth.textContent = pHealth;
         computerHealth.textContent = cHealth;
+        // Will alert when you have won or lost
+        if (playerHealth.textContent === '0'){
+            alert('You have been killed!');
+        } else if (computerHealth.textContent === '0'){
+            alert('You have defeated your enemy!')
+        }
     }
     // Function decides who wins the fight
     const compareAttacks = (playerChoice, computerChoice) => {
@@ -115,8 +121,16 @@ const game = () => {
             }
         }
     }
+    // const endGame = () => {
+    //     if (pHealth === 0){
+    //     alert('You lost!')
+    //     }
+    //     if (cHealth === 0){
+    //         alert('You won!')
+    //     }
+    // }; 
 // Call all functions
-
+    // endGame();
     startGame();
     playMatch();
 };
