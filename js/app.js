@@ -1,145 +1,122 @@
-console.log("Sanity Check!")
-
-
-// let setHeroHealth = 6
-// let cpuHealth = 10
-// let round = 1
-
-// Start Menu
-
-// Make background
-
-// Make Start Menu Music
-// const bkgMusic = {
-//     startMusic: new Audio('music/skyrimmenu.mp3'),
-// }
-// const lvlUp = {
-//     beginBtn: new Audio('music/lvlUpSound.mp3')
-// }
-// // Make Start Button
-document.querySelector(".intro button").addEventListener("mouseenter", () => {
-    bkgMusic.startMusic.play()
- })
-// // Music starts when button is clicked 
-// document.querySelector(".intro button").addEventListener("click", () => {
-//     bkgMusic.startMusic.pause()
-//     lvlUp.beginBtn.play()
-// })
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// Begin Game
 const game = () => {
     let pHealth = 10;
     let cHealth = 10;
-  
-  // Start the game
+
     const startGame = () => {
-      const playBtn = document.querySelector('.intro button');
-      const introScreen = document.querySelector('.intro');
-      const match = document.querySelector('.match');
-      const lvlUp = {
-         beginBtn: new Audio('music/lvlUpSound.mp3')
-      }
-      const bkgMusic = {
-        startMusic: new Audio('music/skyrimmenu.mp3'),
-        }
-        document.querySelector(".intro button").addEventListener("mouseenter", () => {
-            bkgMusic.startMusic.play()
-         })
-       playBtn.addEventListener('click', () => {
+        const playBtn = document.querySelector('.intro button');
+        const introScreen = document.querySelector('.intro');
+        const match = document.querySelector('.match');
+        const lvlUp = {
+            beginBtn: new Audio('music/lvlUpSound.mp3')
+         }
+         const bkgMusic = {
+           startMusic: new Audio('music/skyrimmenu.mp3')
+           }
+           document.querySelector(".intro button").addEventListener("mouseenter", () => {
+               bkgMusic.startMusic.play()
+            })
+
+        playBtn.addEventListener('click', () => {
             introScreen.classList.add('fadeOut');
-            match.classList.add("fadeIn");
+            match.classList.add('fadeIn');
             lvlUp.beginBtn.play();
             bkgMusic.startMusic.pause();
-      }); 
-    };
-      //re add ")" 43
-
-  // Play match
-  const playMatch = () => {
-    const options = document.querySelectorAll('.options button');
-    const playerHand = document.querySelector('.player-action')
-    const cpuHand = document.querySelector('.cpu-action')
-
-    // cpuOptions
-    const cpuOptions = ['sword', 'magika', 'archery'];
-    
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            // Computer choice
-            const cpuNum = Math.floor(Math.random() * 3);
-            const cpuChoice = cpuOptions[cpuNum];
-            console.log(cpuChoice)
-            // Call compare moves
-            compMoves(this.textContent, cpuChoice);
-
-            // Do animations
-            playerHand.src = `images/knightattackstrip${this.textContent}.png`
-            cpuHand.src = `images/knightattackstrip${this.textContent}.png`
         });
-    });
-  };
+    };
+    const playMatch = () => {
+        const options = document.querySelectorAll('.options button');
+        const playerChar = document.querySelector('.player-char');
+        const computerChar = document.querySelector('.computer-char');
+        const hands = document.querySelectorAll('.characters img');
+        const fight = {
+            fightMusic: new Audio('music/uiupdate.mp3')
+        }
 
-  const updateHealth = () => {
-      const playerHealth = document.querySelector('.player-health');
-      const cpuHealth = document.querySelector('.cpu-health');
-      pHealth.textContent = pHealth;
-      cpuHealth.textContent = cpuHealth;
-  }
+        hands.forEach(hand => {
+            hand.addEventListener('animationend', function(){
+                this.style.animation = '';
+            });
+        });
 
-  const compMoves = (userChoice,  cpuChoice) => {
-      const winner = document.querySelector('.winner')
-    if (userChoice === cpuChoice){
-        winner.textContent = 'It is a tie';
-        return;
+        const computerOptions = ['sword', 'magika', 'archery'];
+        
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                // How my computer will choose
+                const computerNumber = Math.floor(Math.random() * 3);
+                const computerChoice = computerOptions[computerNumber];
+                fight.fightMusic.play();
+                console.log(this);
+                console.log(computerChoice);
+                
+                // Call compareAttacks
+                compareAttacks(this.textContent, computerChoice);
+
+                playerChar.style.animation = "shakePlayer 1s ease";
+                computerChar.style.animation = "shakeComputer 2s ease";
+            });
+        });
+    };
+
+    const updateHealth = () => {
+        const playerHealth = document.querySelector('.player-health p');
+        const computerHealth = document.querySelector('.computer-health p');
+        playerHealth.textContent = pHealth;
+        computerHealth.textContent = cHealth;
     }
-    if(userChoice === 'sword'){
-        if(cpuChoice === 'magika'){
-            winner.textContent = 'Nice moves';
-            cpuHealth--
-            updateHealth()
-            return;
-        } else {
-            winner.textContent = 'Computer wins';
-            pHealth--
-            updateHealth();
+
+    const compareAttacks = (playerChoice, computerChoice) => {
+        const winner = document.querySelector('.winner');
+        if (playerChoice === computerChoice){
+            winner.textContent = 'Parry!';
             return;
         }
-    }
-    if(userChoice === 'archery'){
-        if(cpuChoice === 'magika'){
-            winner.textContent = 'Computer wins';
-            pHealth--
-            updateHealth();
-            return;
-        } else {
-            winner.textContent = 'Nice moves';
-            cpuHealth--
-            updateHealth();
-            return;
+        if (playerChoice === 'sword'){
+            if (computerChoice === 'archery'){
+                winner.textContent = 'Good attack!';
+                cHealth--;
+                updateHealth();
+                return;
+            } else {
+                winner.textContent = 'You took damage!';
+                pHealth--;
+                updateHealth();
+                return;
+            }
+        }
+        if (playerChoice === 'magika'){
+            if (computerChoice === 'archery'){
+                winner.textContent = 'You took damage!';
+                pHealth--;
+                updateHealth();
+                return;
+            } else {
+                winner.textContent = 'Good attack!';
+                cHealth--;
+                updateHealth();
+                return;
+            }
+        }
+        if (playerChoice === 'archery'){
+            if (computerChoice === 'sword'){
+                winner.textContent = 'You took damage!';
+                pHealth--;
+                updateHealth();
+                return;
+            } else {
+                winner.textContent = 'Good attack!';
+                cHealth--;
+                updateHealth();
+                return;
+            }
+        }
+        if (pHealth === 0){
+            winner.textContent === 'You died'
         }
     }
-    if(userChoice === 'magika'){
-        if(cpuChoice === 'archery'){
-            winner.textContent = 'Nice moves';
-            cpuHealth--
-            updateHealth();
-            return;
-        } else {
-            winner.textContent = 'Computer wins';
-            pHealth--
-            updateHealth();
-            return;
-        }
-    }
-}
-  // Call all inner functions
-  startGame();
-  
-};    
 
-  // Start game function
-  game(); 
+
+    startGame();
+    playMatch();
+};
+game();

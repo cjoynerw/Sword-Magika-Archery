@@ -6,34 +6,36 @@
 
 section{
     height: 100vh;
-    background-color: rgb(39, 41, 68);
-    font-family: sans-serif;
+    font-family: fantasy;
+    background-image: url(https://images.hdqwalls.com/wallpapers/the-elder-scrolls-v-skyrim-5k-kg.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
-.health-bars {
+.score {
     color: red;
     height: 20vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.health-bars h2 {
+.score h2 {
     font-size: 30px;
 }
-.health-bars p {
+.score p {
     text-align: center;
     padding: 10px;
     font-size: 25px;
 }
 
 .intro {
-    color: purple;
+    color: crimson;
     height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    transition: opacity 2s ease;
+    transition: opacity 3s ease;
 }
 
 .intro h1 {
@@ -45,35 +47,44 @@ section{
     height: 50px;
     background: none;
     border: none;
-    color: green;
+    color: black;
     font-size: 20px;
-    background-color: indianred;
+    background: crimson;
     border-radius: 3px;
+    cursor: pointer;
 }
 
-.match{
+.match {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: opacity 2s ease 3s;
+    transition: opacity 3s ease 3s;
+    background-image: url(https://vignette.wikia.nocookie.net/skyrimroleplaying/images/c/c4/Helgen.jpg/revision/latest?cb=20130815142729);
+    background-position: center;
+    background-size: cover;
+    border: 3px white;
 }
-
-.winner{
-    color: indigo;
+.winner {
+    color: white;
     text-align: center;
     font-size: 50px;
 }
 
-.hands, .options {
+.characters,
+.options {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center;   
 }
 
-/* .player-hand {
+.player-char {
     transform: rotateY(180deg);
-} */
+}
+
+.computer-char {
+    transform: rotateY(180deg);
+}
 
 div.fadeOut {
     opacity: 0;
@@ -82,5 +93,80 @@ div.fadeOut {
 
 div.fadeIn {
     opacity: 1;
-    pointer-events: none;
+    pointer-events: all;
+}
+
+.reset {
+    position: absolute;
+    top: 80%;
+    left: 40%;
+    width: 150px;
+    /* height: 20px; */
+    background: none;
+    border: none;
+    color: black;
+    font-size: 20px;
+    background: crimson;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+@keyframes shakePlayer {
+    0%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    15%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    25%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    35%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    50%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    65%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    75%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    85%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    100%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+}
+
+@keyframes shakeComputer {
+    0%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    15%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    25%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    35%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    50%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    65%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    75%{
+        transform: rotateY(180deg) translateY(0px);
+    }
+    85%{
+        transform: rotateY(180deg) translateY(-50px);
+    }
+    100%{
+        transform: rotateY(180deg) translateY(0px);
+    }
 }
