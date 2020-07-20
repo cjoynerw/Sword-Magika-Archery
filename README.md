@@ -8,7 +8,7 @@ Goal: Engage the player in an awesome adventure! <br>
 <h2>User Story</h2> <br>
 <h3>User can press start button to begin. Screen will shift to side view and begin. User will then be able to pick from 3 attacks. Attacks will continue until player or CPU no longer has Health Points. When player Health Points reach zero, the game is over.</h3> <br>
 <h2>My Approach and Problems I Faced</h2>
-<h3>Going into the project I was really looking to solidify some of the basics I learned in my first 2 weeks in General Assembly's Software Engineering immersive program. Some of the problems I faced was figuring out how to add sound effects with correct timiing as well as creating *some* animation for my game.</h3> <br>
+<h3>Going into the project I was really looking to solidify some of the basics I learned in my first 2 weeks in General Assembly's Software Engineering immersive program. Some of the problems I faced was figuring out how to add sound effects with correct timing as well as creating *some* animation for my game. Some of the elements used were brand spanking new to me and thinking programmatically to apply those new things was something I had to learn as I was building the game.</h3> <br>
 <ul>Future Plans
   <li>Create proper health bar</li>
   <li>Add enemy randomizer</li>
