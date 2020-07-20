@@ -1,7 +1,9 @@
+// Everything inside the game function
 const game = () => {
     let pHealth = 10;
     let cHealth = 10;
 
+    // Start game function
     const startGame = () => {
         const playBtn = document.querySelector('.intro button');
         const introScreen = document.querySelector('.intro');
@@ -16,6 +18,7 @@ const game = () => {
                bkgMusic.startMusic.play()
             })
 
+            // Transitions the game on click of start button
         playBtn.addEventListener('click', () => {
             introScreen.classList.add('fadeOut');
             match.classList.add('fadeIn');
@@ -23,6 +26,7 @@ const game = () => {
             bkgMusic.startMusic.pause();
         });
     };
+    // Play match function starts fight music and contains animation
     const playMatch = () => {
         const options = document.querySelectorAll('.options button');
         const playerChar = document.querySelector('.player-char');
@@ -57,14 +61,14 @@ const game = () => {
             });
         });
     };
-
+    // Updates health points 
     const updateHealth = () => {
         const playerHealth = document.querySelector('.player-health p');
         const computerHealth = document.querySelector('.computer-health p');
         playerHealth.textContent = pHealth;
         computerHealth.textContent = cHealth;
     }
-
+    // Function decides who wins the fight
     const compareAttacks = (playerChoice, computerChoice) => {
         const winner = document.querySelector('.winner');
         if (playerChoice === computerChoice){
@@ -111,14 +115,7 @@ const game = () => {
             }
         }
     }
-    // const resetBtn = {
-    //     new Audio('music/death.mp3')
-    //   }
-      
-    //   resetBtn.querySelector('reset button').addEventListener('click', () => {
-    //     location.reload();
-    //   })
-
+// Call all functions
 
     startGame();
     playMatch();
