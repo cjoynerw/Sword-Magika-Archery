@@ -110,10 +110,14 @@ const game = () => {
                 return;
             }
         }
-        if (pHealth === 0){
-            winner.textContent === 'You died'
-        }
     }
+    // const resetBtn = {
+    //     new Audio('music/death.mp3')
+    //   }
+      
+    //   resetBtn.querySelector('reset button').addEventListener('click', () => {
+    //     location.reload();
+    //   })
 
 
     startGame();
